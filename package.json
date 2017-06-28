@@ -1,0 +1,20 @@
+{
+  "name": "git1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"git": "git add -A && git commit -m 'new changes' && git push origin master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dzemidzenka/test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dzemidzenka/test/issues"
+  },
+  "homepage": "https://github.com/dzemidzenka/test#readme"
+}
