@@ -2,10 +2,15 @@
   "name": "git1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "test.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-	"git": "git add -A && git commit -m 'new changes' && git push origin master"
+    "pretest": "echo Pretest",
+    "test": "echo Test",
+    "posttest": "echo Posttest",
+    "clean": "rimraf ./build && mkdir build",
+    "prebuild": "npm run clean",
+    "build": "cross-env NODE_ENV=development && webpack",
+    "serve": "webpack-dev-server --content-base build/"
   },
   "repository": {
     "type": "git",
@@ -16,5 +21,27 @@
   "bugs": {
     "url": "https://github.com/dzemidzenka/test/issues"
   },
-  "homepage": "https://github.com/dzemidzenka/test#readme"
+  "homepage": "https://github.com/dzemidzenka/test#readme",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "normalize.css": "^7.0.0"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.5.2",
+    "cross-env": "^5.0.1",
+    "css-loader": "^0.28.4",
+    "extract-loader": "^0.1.0",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^0.11.2",
+    "html-loader": "^0.4.5",
+    "html-minifier": "^3.5.2",
+    "html-webpack-plugin": "^2.29.0",
+    "image-webpack-loader": "^3.3.1",
+    "rimraf": "^2.6.1",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
+  }
 }
