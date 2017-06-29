@@ -13,7 +13,7 @@
     "preprod": "npm run clean",
     "prod":  "cross-env NODE_ENV=production && webpack -p",
     "serve": "webpack-dev-server --content-base build/",
-    "git": "git add -A && git status && git commit -a -m 'new' && git status && git push original master"
+    "git": "git add -A && git status && git commit -a -m new && git status && git push original master"
   },
   "repository": {
     "type": "git",
