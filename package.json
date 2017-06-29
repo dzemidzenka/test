@@ -10,7 +10,10 @@
     "clean": "rimraf ./build && mkdir build",
     "prebuild": "npm run clean",
     "build": "cross-env NODE_ENV=development && webpack",
-    "serve": "webpack-dev-server --content-base build/"
+    "preprod": "npm run clean",
+    "prod":  "cross-env NODE_ENV=production && webpack -p",
+    "serve": "webpack-dev-server --content-base build/",
+    "git": "git add -A && git status && git commit -a -m 'new' && git status && git push original master"
   },
   "repository": {
     "type": "git",
@@ -24,6 +27,7 @@
   "homepage": "https://github.com/dzemidzenka/test#readme",
   "dependencies": {
     "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
     "normalize.css": "^7.0.0"
   },
   "devDependencies": {
@@ -38,9 +42,11 @@
     "file-loader": "^0.11.2",
     "html-loader": "^0.4.5",
     "html-minifier": "^3.5.2",
+    "html-minifier-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.29.0",
     "image-webpack-loader": "^3.3.1",
     "rimraf": "^2.6.1",
+    "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.5.0"
   }

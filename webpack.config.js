@@ -1,14 +1,26 @@
-var webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HTMLPlugin = require('html-webpack-plugin');
+const HtmlMinifierPlugin = require('html-minifier-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
+const VENDOR_LIBS = [
+    'jquery',
+    'normalize.css',
+    'lodash'
+];
+
 
 
 const config = {
-    entry: './src/js/index.js',
+    entry: {
+        app: './src/js/index.js',
+        vendor: VENDOR_LIBS
+    },
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js',
+        filename: '[name].[chunkhash].bundle.js',
         publicPath: '',
     },
 
@@ -31,11 +43,11 @@ const config = {
                         loader: 'url-loader',
                         options: {
                             limit: 1
-                        }
+                        },
                     },
                     'image-webpack-loader'
                 ]
-            }            
+            }
         ]
     },
 
@@ -47,8 +59,25 @@ const config = {
         }),
         new HTMLPlugin({
             template: "src/template.html"
-        }),        
-        new webpack.HotModuleReplacementPlugin(),
+        }),
+
+        // new HtmlMinifierPlugin({
+        //     removeComments: true,
+        // }),
+        // new UglifyJSPlugin(),
+
+        // new webpack.HotModuleReplacementPlugin(),
+
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: 'vendor'
+        // }),      
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['vendor', 'manifest']
+        }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+        }),
+
     ]
 
 };
